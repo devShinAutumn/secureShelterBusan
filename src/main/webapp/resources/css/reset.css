@@ -1,0 +1,61 @@
+@charset  "utf-8";
+
+*{margin: 0; padding: 0;box-sizing: border-box;font-family: 'Noto Sans KR', sans-serif;}
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,button,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video{outline: none;margin:0;padding:0;border:0;font-size:100%;vertical-align:top;background:transparent;word-wrap:unset; word-break: keep-all;font-family: 'Noto Sans KR', sans-serif;}
+body{font-family: 'Noto Sans KR', sans-serif; line-height: normal; color:#202020; letter-spacing:normal; box-sizing:border-box;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{ display:block;}
+ol, ul, li { list-style: none; }
+blockquote, q { quotes: none; }
+img{vertical-align:top;outline: none !important;border: none !important;}
+table{border-collapse:collapse; border-spacing:0;}
+a {text-decoration:none;cursor:pointer;}
+html>/**/body{} /*IE7을 제외한 다른 브라우저에서 모든페이지에 스크롤 영역이 생김. 스크롤의 유무에 따라 가운데정렬 레이아웃이 좌우로 움찔거리는 현상 제거*/
+html, body{height:100%; position: relative}
+hrml{font-size:16px;}
+
+/* 크롬 자동완성 색상 */
+.login-container input:-webkit-autofill,
+.login-container input:-webkit-autofill:hover,
+.login-container input:-webkit-autofill:focus,
+.login-container input:-webkit-autofill:active {-webkit-transition: background-color 1000s ease-in-out 0s !important;-webkit-text-fill-color: #202020 !important;}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {-webkit-transition: background-color 1000s ease-in-out 0s !important;-webkit-text-fill-color: #202020 !important;}
+input[type="text"]{margin:0;padding:0;vertical-align:middle;appearance:none;color:#202020;border-radius:0;}
+input[type=text]::-ms-clear{display: none;}
+input[type=email]::-ms-clear{display: none;}
+input[type=tel]::-ms-clear{display: none;}
+input[type=password]::-ms-clear{display: none;}
+input[type=file]::-ms-clear{display: none;}
+input{border: 0; outline: none;vertical-align: bottom;}
+input[type="password"],input[type="email"]{font-family: 'Noto Sans KR', sans-serif;}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;vertical-align:middle;}
+select {text-indent:0; padding:0;}
+textarea,input:focus {outline:none}
+input[type="button"]{cursor: pointer}
+input::placeholder{font-family: 'Noto Sans KR', sans-serif;}
+textarea {font-family: 'Noto Sans KR', sans-serif;width:100%; resize:none; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;background:#fff;border:1px solid #E9ECEF;padding:10px;font-size: 15px; font-weight: 400;line-height: 22px;}
+textarea::placeholder{font-weight: 400;font-size: 15px;line-height: 22px;color: #9CA5B3;}
+legend{position:absolute; left:-100000px;}
+article{clear:both;}
+button{cursor:pointer;}
+.hidden {position:absolute; width:0; height:0; font-size:0; line-height:0; overflow:hidden; visibility:hidden;}
+.clearfix:after {content:''; display:block; clear:both;}
+
+
+/* IR 효과 */
+.ir {width: 0; height: 0; font-size: 0; line-height: 0; overflow: hidden; position: absolute; right: 0; top: 0;}

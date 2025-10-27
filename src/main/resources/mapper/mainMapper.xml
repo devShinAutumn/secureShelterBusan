@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.mainMapper">
+    <select id="getSsbExpect" parameterType="HashMap" resultType="ssbExpect">
+        SELECT
+            total_rate as totalRate,
+            earthquake_rate as earthquakeRate,
+            mountain_rate as mountainRate,
+            sinkhall_rate as sinkhallRate,
+            shore_rate as shoreRate
+        FROM
+            ssb_expect se
+        ORDER BY
+            se.date DESC
+        LIMIT 1
+    </select>
+    <select id="getSsbShelter" parameterType="HashMap" resultType="ssbShelter">
+        SELECT DISTINCT ON (ss.remarks) ss.remarks AS remarks,
+            ss.address                             AS address,
+            ss.shel_av                             AS shelAv,
+            ss.tel                                 AS tel,
+            ss.lon                                 AS lon,
+            ss.lat                                 AS lat,
+            ss.dt_regt                             AS dtRegt,
+            ss.population                          AS population
+        FROM
+            ssb_shelter ss
+        WHERE
+            ss.sido_name LIKE '부산광역시%'
+        ORDER BY
+            ss.remarks,ss.dt_regt DESC
+    </select>
+    <select id="getLivingPopulation" parameterType="HashMap" resultType="livingPopulation">
+        SELECT
+            lp.g_name             AS gName,
+            ROUND(SUM(lp.sum), 2) AS sum
+        FROM
+            living_population lp
+        GROUP BY
+            lp.g_name
+        ORDER BY
+            lp.g_name
+    </select>
+    <select id="getRipCrnt" parameterType="HashMap" resultType="ripCrnt">
+        SELECT
+            rc.beach_name  AS beachName,
+            rc.obs_time    AS obsTime,
+            rc.air_temp    AS airTemp,
+            rc.wave_height AS waveHeight,
+            rc.wind_speed  AS windSpeed,
+            rc.lon         AS lon,
+            rc.lat         AS lat
+        FROM
+            rip_crnt rc
+        WHERE
+            rc.beach_name = '해운대 해수욕장'
+        ORDER BY
+            rc.obs_time
+    </select>
+    <select id="getTidalObserv" parameterType="HashMap" resultType="tidalObserv">
+        SELECT
+            to2.record_time      AS recordTime,
+            to2.wind_gust         AS windGust,
+            to2.wind_speed       AS windSpeed,
+            to2.air_press        AS airPress,
+            to2.air_temp         AS airTemp,
+            to2.tide_level        AS tideLevel
+        FROM
+            tidal_obsrv to2
+        WHERE
+            to2.record_time::TIMESTAMP >= CURRENT_TIMESTAMP - INTERVAL '1 day'
+        ORDER BY
+            recordTime
+    </select>
+    <select id="getObsAsosTim" parameterType="HashMap" resultType="obsAsosTim">
+        SELECT
+            oat.time AS time,
+            oat.mm   AS mm
+        FROM
+            obs_asos_tim oat
+        WHERE
+            oat.time::TIMESTAMP >= CURRENT_TIMESTAMP - INTERVAL '3 day'
+        ORDER BY
+            oat.time
+    </select>
+
+    <insert id="insertBusanRainfalldepthInfo" parameterType="collectorDto">
+        INSERT INTO public.ssb_precipitation (time_day, last_rain_dt, level6, acc_rain, client_id, acc_rain_dt, client_name, level12)
+        VALUES(#{timeDay}, #{lastRainDt}, #{level6}, #{accRain}, #{clientId}, #{accRainDt}, #{clientName}, #{level12});
+    </insert>
+
+
+    <select id="getRhymeRhymeans" parameterType="HashMap" resultType="rhymeRhymeans">
+        SELECT
+            rhyme_dt as rhymeDt,
+            full_volume  as fullVolume,
+            lwrmd_cloud  as lwrmdCloud
+        FROM
+            rhyme_rhymeans rr
+        WHERE
+            rr.rhyme_dt::TIMESTAMP >= CURRENT_TIMESTAMP - INTERVAL '1 day'
+        ORDER BY
+            rhymeDt
+    </select>
+</mapper>
